@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 /**********************************************************************************
 *
 *    Copyright (c) 2017-today MuK IT GmbH.
@@ -22,16 +20,25 @@
 *
 **********************************************************************************/
 
-import { useService } from "@web/core/utils/hooks";
+odoo.define('muk_web_theme.kanban_column_quick_create', function (require) {
+"use strict";
 
-const { Component, hooks } = owl;
+const config = require('web.config');
 
-export class AppsBar extends Component {}
+const KanbanRenderer = require('web.kanban_column_quick_create');
 
-Object.assign(AppsBar, {
-    template: 'muk_web_theme.AppsBar',
-    props: {
-    	apps: Array,
+KanbanRenderer.include({
+    init() {
+        this._super(...arguments);
+        this.isMobile = config.device.isMobile;
+    },
+    _cancel() {
+    	if (!config.device.isMobile) {
+    		this._super(...arguments);
+    	} else if (!this.folded) {
+            this.$input.val('');
+        }
     },
 });
 
+});

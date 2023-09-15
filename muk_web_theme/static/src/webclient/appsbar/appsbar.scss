@@ -2,10 +2,21 @@
 *
 *    Copyright (c) 2017-today MuK IT GmbH.
 *
-*    This file is part of MuK Backend Theme
+*    This file is part of MuK Theme
 *    (see https://mukit.at).
 *
-*    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+*    This program is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU Lesser General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU Lesser General Public License for more details.
+*
+*    You should have received a copy of the GNU Lesser General Public License
+*    along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 **********************************************************************************/
 
@@ -48,13 +59,19 @@
 					}
 		        }
 		    }
-	        > li.active > a {
-			    background: $o-brand-primary;
-	        }
 	        > li:hover > a {
 			    background: $o-brand-primary;
 	        }
 	    }
+	}
+}
+
+.o_fullscreen {
+	.mk_apps_sidebar_panel {
+		display: none;
+	}
+	.o_action_manager {
+		padding-left: 0;
 	}
 }
 
@@ -63,7 +80,7 @@
 		.mk_apps_sidebar_panel {
 			width: $mk-sidebar-large-width;
 		}
-		.o_navbar + .o_action_manager {
+		.o_action_manager {
 			padding-left: $mk-sidebar-large-width;
 		}
 	}
@@ -77,7 +94,7 @@
 				margin-right: 0 !important;
 			}
 		}
-		.o_navbar + .o_action_manager {
+		.o_action_manager {
 			padding-left: $mk-sidebar-small-width;
 		}
 	}
@@ -99,7 +116,7 @@
 				margin-right: 0 !important;
 			}
 		}
-		.o_navbar + .o_action_manager {
+		.o_action_manager {
 			padding-left: $mk-sidebar-small-width;
 		}
 	}
@@ -116,14 +133,5 @@
 	}
 	.o_action_manager {
 		padding-left: 0;
-	}
-}
-
-.editor_has_snippets_hide_backend_navbar {
-	.mk_apps_sidebar_panel {
-		display: none !important;
-	}
-	.o_action_manager {
-		padding-left: 0 !important;
 	}
 }

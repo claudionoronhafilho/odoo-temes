@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 /**********************************************************************************
 *
 *    Copyright (c) 2017-today MuK IT GmbH.
@@ -22,16 +20,18 @@
 *
 **********************************************************************************/
 
-import { useService } from "@web/core/utils/hooks";
+odoo.define('muk_web_theme.KanbanView', function (require) {
+"use strict";
 
-const { Component, hooks } = owl;
+const config = require("web.config");
 
-export class AppsBar extends Component {}
+const KanbanView = require('web.KanbanView');
 
-Object.assign(AppsBar, {
-    template: 'muk_web_theme.AppsBar',
-    props: {
-    	apps: Array,
+KanbanView.include({
+    init() {
+        this._super.apply(this, arguments);
+        this.jsLibs.push("/web/static/lib/jquery.touchSwipe/jquery.touchSwipe.js");
     },
 });
 
+});

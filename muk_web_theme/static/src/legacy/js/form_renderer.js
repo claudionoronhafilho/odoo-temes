@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 /**********************************************************************************
 *
 *    Copyright (c) 2017-today MuK IT GmbH.
@@ -22,16 +20,30 @@
 *
 **********************************************************************************/
 
-import { useService } from "@web/core/utils/hooks";
+odoo.define('muk_web_theme.FormRenderer', function (require) {
+"use strict";
 
-const { Component, hooks } = owl;
+const core = require('web.core');
+const config = require("web.config");
 
-export class AppsBar extends Component {}
+const FormRenderer = require('web.FormRenderer');
 
-Object.assign(AppsBar, {
-    template: 'muk_web_theme.AppsBar',
-    props: {
-    	apps: Array,
+FormRenderer.include({
+    _renderHeaderButtons() {
+        const $buttons = this._super(...arguments);
+        if (
+            !config.device.isMobile ||
+            !$buttons.is(":has(>:not(.o_invisible_modifier))")
+        ) {
+            return $buttons;
+        }
+        $buttons.addClass("dropdown-menu");
+        const $dropdown = $(
+            core.qweb.render("muk_web_theme.MenuStatusbarButtons")
+        );
+        $buttons.addClass("dropdown-menu").appendTo($dropdown);
+        return $dropdown;
     },
 });
 
+});

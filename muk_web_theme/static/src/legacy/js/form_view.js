@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 /**********************************************************************************
 *
 *    Copyright (c) 2017-today MuK IT GmbH.
@@ -22,16 +20,30 @@
 *
 **********************************************************************************/
 
-import { useService } from "@web/core/utils/hooks";
+odoo.define('muk_web_theme.FormView', function (require) {
+"use strict";
 
-const { Component, hooks } = owl;
+const config = require("web.config");
 
-export class AppsBar extends Component {}
+const FormView = require('web.FormView');
+const QuickCreateFormView = require('web.QuickCreateFormView');
 
-Object.assign(AppsBar, {
-    template: 'muk_web_theme.AppsBar',
-    props: {
-    	apps: Array,
+FormView.include({
+    init() {
+        this._super(...arguments);
+        if (config.device.isMobile) {
+            this.controllerParams.disableAutofocus = true;
+        }
     },
 });
 
+QuickCreateFormView.include({
+    init() {
+        this._super(...arguments);
+        if (config.device.isMobile) {
+            this.controllerParams.disableAutofocus = true;
+        }
+    },
+});
+
+});
